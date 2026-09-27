@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  /* Force exact color reproduction for backgrounds, text, badges, and borders */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+  }
+
+  /* Hide screen-only elements, overlays & interactive controls */
+  .print-hide,
+  .print\:hidden,
+  button,
+  .backdrop-blur-xs,
+  .fixed.inset-0 {
+    position: static !important;
+  }
+
+  .print-hide,
+  .print\:hidden,
+  button {
+    display: none !important;
+  }
+
+  /* Ensure printable document takes full A4 page width with clean margins like Microsoft Word */
+  #proposal-official-printable-doc,
+  #rap-summary-printable-doc,
+  .printable-doc {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    font-size: 14pt !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Microsoft Word executive document contrast: pure black text (#000000) for maximum legibility & sharpness */
+  .printable-doc,
+  .printable-doc p,
+  .printable-doc span,
+  .printable-doc li,
+  .printable-doc td,
+  .printable-doc div {
+    color: #000000;
+  }
+
+  .printable-doc .text-slate-900,
+  .printable-doc .text-slate-950,
+  .printable-doc .text-slate-800,
+  .printable-doc .text-slate-700,
+  .printable-doc .text-slate-600,
+  .printable-doc strong,
+  .printable-doc b {
+    color: #000000 !important;
+  }
+
+  .printable-doc strong,
+  .printable-doc b {
+    font-weight: 700 !important;
+  }
+
+  /* Secondary metadata labels in print: deep charcoal for hierarchy */
+  .printable-doc .text-slate-500,
+  .printable-doc .text-slate-400 {
+    color: #334155 !important;
+  }
+
+  /* Keep brand teal identity accents clear, formal, and distinguishable */
+  .printable-doc .brand-accent,
+  .printable-doc .text-teal-900,
+  .printable-doc .text-teal-950 {
+    color: #0f4c47 !important;
+  }
+  .printable-doc .text-teal-800 {
+    color: #115e59 !important;
+  }
+  .printable-doc .text-teal-700 {
+    color: #0f766e !important;
+  }
+  .printable-doc .bg-teal-900 {
+    background-color: #0f4c47 !important;
+    color: #ffffff !important;
+  }
+  .printable-doc .bg-teal-50,
+  .printable-doc .bg-teal-50\/60,
+  .printable-doc .bg-teal-50\/70 {
+    background-color: #f0fdfa !important;
+  }
+  .printable-doc .border-teal-600,
+  .printable-doc .border-teal-600\/40,
+  .printable-doc .border-teal-700,
+  .printable-doc .border-teal-800,
+  .printable-doc .border-teal-900 {
+    border-color: #0f766e !important;
+  }
+
+  /* Typography rhythm: clear line-height and border spacing to prevent text and line collisions */
+  .printable-doc p {
+    line-height: 1.8 !important;
+    margin-bottom: 0.35rem !important;
+  }
+  .printable-doc p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Prevent SVG icon top/left clipping during canvas render & printing */
+  .printable-doc svg,
+  .pdf-page-sheet svg {
+    overflow: visible !important;
+    box-sizing: content-box !important;
+    padding: 1px !important;
+  }
+
+  .printable-doc .border-b,
+  .printable-doc .border-b-2,
+  .printable-doc .border-t,
+  .printable-doc .border-t-2 {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Explicit A4 Page Sheets for reliable multi-page printing */
+  .pdf-page-sheet {
+    display: block !important;
+    width: 100% !important;
+    min-height: 270mm !important;
+    background: #ffffff !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin: 0 0 0 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .pdf-page-sheet:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .page-separator-indicator {
+    display: none !important;
+  }
+
+  /* Avoid awkward page cuts on content sections, cards and tables */
+  .pdf-avoid-break,
+  .pdf-page-block,
+  .signatory-block,
+  .syllabus-card,
+  table,
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .page-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  /* Crisp, sharp table borders like MS Word with uniform cell padding */
+  .printable-doc table,
+  .pdf-page-sheet table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    font-size: 11.5pt !important;
+  }
+
+  .printable-doc th,
+  .pdf-page-sheet th {
+    background-color: #f1f5f9 !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px !important;
+  }
+
+  .printable-doc td,
+  .pdf-page-sheet td {
+    border: 1px solid #e2e8f0 !important;
+    padding: 8px !important;
+    color: #111827 !important;
+  }
+
+  .printable-doc tr {
+    page-break-inside: avoid !important;
+  }
+
+  /* Section heading precision */
+  .printable-doc h1,
+  .printable-doc h2,
+  .printable-doc h3,
+  .printable-doc h4 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    color: #0f172a !important;
+    font-weight: 800 !important;
+  }
+}
+
+/* =========================================================
+   THEME FLAT: SLEEK ULTRA-MINIMALIST (FLAT & BORDERLESS)
+   ========================================================= */
+.theme-flat {
+  --bg-main: #fafbfc;
+  --bg-card: #ffffff;
+  --border-color: #f1f5f9;
+}
+
+/* 1. Reset all card shadows and enforce sharp sleek radius */
+.theme-flat .rounded-3xl,
+.theme-flat .rounded-2xl {
+  border-radius: 12px !important;
+}
+
+.theme-flat .bg-white {
+  box-shadow: none !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.theme-flat .shadow-xs,
+.theme-flat .shadow-sm,
+.theme-flat .shadow-md,
+.theme-flat .shadow-2xs,
+.theme-flat .shadow-3xs {
+  box-shadow: none !important;
+}
+
+/* 2. Hover states for cards: elegant simple highlight */
+.theme-flat .group:hover,
+.theme-flat .bg-white:hover {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* 3. Simplification of gradients on banners and headers */
+.theme-flat .bg-gradient-to-r,
+.theme-flat .bg-gradient-to-br {
+  background-image: none !important;
+  background-color: #0f172a !important; /* Solid premium charcoal dark */
+  color: #ffffff !important;
+}
+
+/* If a banner is inside the dashboard and should be ultra simple & light */
+.theme-flat .rounded-3xl.bg-gradient-to-br.from-slate-50 {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* 4. Tab controls & buttons: pure flat, outline, solid */
+.theme-flat button {
+  box-shadow: none !important;
+}
+
+/* Active primary button in flat style */
+.theme-flat .bg-gradient-to-r.from-teal-700.to-emerald-700,
+.theme-flat .bg-teal-700,
+.theme-flat .bg-emerald-600,
+.theme-flat .bg-teal-600 {
+  background-image: none !important;
+  background-color: #0f172a !important; /* solid black/charcoal */
+  color: #ffffff !important;
+  border: 1px solid #0f172a !important;
+}
+
+.theme-flat .bg-gradient-to-r.from-teal-700.to-emerald-700:hover,
+.theme-flat .bg-teal-700:hover,
+.theme-flat .bg-emerald-600:hover,
+.theme-flat .bg-teal-600:hover {
+  background-color: #1e293b !important;
+}
+
+/* Reset tab styles to be extremely sleek underlines instead of background pill colors */
+.theme-flat .bg-gradient-to-r.from-teal-700.to-emerald-700.text-white {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+}
+
+/* 5. Clean minimalist style for form inputs, selects & textareas */
+.theme-flat input,
+.theme-flat select,
+.theme-flat textarea {
+  box-shadow: none !important;
+  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
+  border-radius: 6px !important;
+}
+
+.theme-flat input:focus,
+.theme-flat select:focus,
+.theme-flat textarea:focus {
+  border-color: #0f172a !important;
+  outline: none !important;
+}
+
+/* 6. Highlighting boxes (HPP indicators, rates) */
+.theme-flat .bg-slate-50,
+.theme-flat .bg-slate-50\/40,
+.theme-flat .bg-teal-50\/10,
+.theme-flat .bg-teal-50\/40,
+.theme-flat .bg-emerald-50\/10,
+.theme-flat .bg-emerald-50\/40 {
+  background-color: #f8fafc !important;
+  border-color: #f1f5f9 !important;
+}
+
+/* Left accent colors inside flat cards for neat guidance without overwhelming borders */
+.theme-flat .group {
+  border-left: 3px solid #cbd5e1 !important;
+}
+
+.theme-flat .group:hover {
+  border-left-color: #0f172a !important;
+}

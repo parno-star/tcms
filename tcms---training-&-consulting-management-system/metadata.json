@@ -1,0 +1,6 @@
+{
+  "name": "TCMS - Training & Consulting Management System",
+  "description": "Sistem Pengelolaan HPP, Proteksi Margin, Penguncian RAP, dan Auto-PO untuk Proyek Pelatihan & Jasa Konsultasi dengan Tata Kelola 3 Pihak (Konseptor, Pemeriksa, Penyetuju).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
